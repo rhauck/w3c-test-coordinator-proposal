@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Proposal to Introduce a W3C Spec Ownership Role</title>
+    
+  <style>
+ /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #005A9C;
+}
+
+
+/* --- --- */
+ol.algorithm { counter-reset:numsection; list-style-type: none; }
+ol.algorithm li { margin: 0.5em 0; }
+ol.algorithm li:before { font-weight: bold; counter-increment: numsection; content: counters(numsection, ".") ") "; }
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+.note {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #E05252;
+    background: #FBE9E9;
+}
+</style>
+<link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial"><!--[if lt IE 9]><script src='http://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+</head>
+<body style="width: 43em;">
+<div class="head">
+  <p>
+  </p>
+  <h1 class="title" id="title">Proposal to Introduce a W3C Spec Test Suite Ownership Role</h1>
+  
+  <h2 id="unofficial-draft-29-january-2013">Unofficial Draft 12 February 2013</h2>
+  <dl>
+    <dt>Editor:</dt>
+    <dd>Rebecca Hauck (<a href="http://www.adobe.com/">Adobe Systems, Inc</a>)
+         &lt;rhauck @adobe.com&gt;
+  </dl>
+        <p class="copyright">
+          This document is licensed under a 
+          <a class="subfoot" href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons 
+          Attribution 3.0 License</a>.
+        </p>
+  <hr>
+</div>
+
+<section id="abstract" class="introductory">
+
+    <h2>Abstract</h2>
+    
+    <p>This document is intended to be be one part of a bigger plan to improve the Open Web Platform testing process. It
+       is a proposal to introduce a Test Coordinator as a new formal role in the W3C specification process and life
+       cycle. This document will propose a definition of this role, including responsibilities, scope, limitations, and
+       relationships to other W3C members, working groups, and to the broader Open Web Platform community.</p>
+    
+</section>
+<section id="sotd" class="introductory">
+    
+    <h2>Status of This Document</h2>
+  
+    <p>
+      This document is merely a public working draft of a proposal. It has no official standing of any kind and does 
+      not represent the support or consensus of any standards organization.
+    </p>
+  
+</section>
+<section id="toc">
+    
+    <h2 class="introductory">Table of Contents</h2>
+    <ul class="toc">
+        <li class="tocline">
+            <a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a>
+        </li>
+        <li class="tocline">
+            <a href="#challenges" class="tocxref"><span class="secno">2. </span>Challenges</a>
+        </li>
+        <li class="tocline">
+            <a href="#current-models" class="tocxref"><span class="secno">3. </span>Current Models</a>
+        </li>
+        <li class="tocline">
+            <a href="#proposal" class="tocxref"><span class="secno">4. </span>Proposal</a>
+            <ul class="toc">
+                <li class="tocline">
+                    <a href="#roledefinition" class="tocxref"><span class="secno">4.1 </span>Definition of Role</a>
+                </li>
+                <li class="tocline"><a href="#scope" class="tocxref">
+                    <span class="secno">4.2 </span>Role Scope</a>
+                </li>
+                <li class="tocline"><a href="#limitations" class="tocxref">
+                    <span class="secno">4.3 </span>Limitations</a>
+                </li>
+                <li class="tocline"><a href="#relationships" class="tocxref">
+                    <span class="secno">4.4 </span>Role Relationships</a>
+                    <ul class="toc">
+                        <li class="tocline">
+                            <a href="#wg-members" class="tocxref"><span class="secno">4.4.1 </span>W3C</a>
+                        </li>
+                        <li class="tocline"><a href="#spec-editors" class="tocxref">
+                            <span class="secno">4.4.2 </span>Spec Editors</a>
+                        </li>
+                        <li class="tocline"><a href="#wg-members" class="tocxref">
+                            <span class="secno">4.4.3 </span>Working Group Members</a>
+                        </li>
+                        <li class="tocline"><a href="#community" class="tocxref">
+                            <span class="secno">4.4.4 </span>Open Web Platform Community</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tocline"><a href="#role-name" class="tocxref"><span class="secno">4.5 </span>Role Name</a>
+                <li class="tocline"><a href="#implementations" class="tocxref">
+                    <span class="secno">4.6</span>Implementation</a>
+                    <ul class="toc">
+                        <li class="tocline"><a href="#w3c-acknowledgement" class="tocxref">
+                            <span class="secno">4.6.1 </span>W3C Acknowledgement</a>
+                        </li>
+                        <li class="tocline"><a href="#wg-acknowledgement" class="tocxref">
+                            <span class="secno">4.6.2 </span>Working Group Acknowledgement</a>
+                        </li>
+                        <li class="tocline"><a href="#spec-updates" class="tocxref">
+                            <span class="secno">4.6.3 </span>Spec Updates</a>
+                        </li>
+                        <li class="tocline"><a href="#selection" class="tocxref">
+                            <span class="secno">4.6.4 </span>Selection &amp; Appointment</a>
+                        </li>
+                        <li class="tocline"><a href="#common-materials" class="tocxref">
+                            <span class="secno">4.6.5 </span>Common Materials</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tocline"><a href="#measuring-success" class="tocxref">
+                    <span class="secno">4.7 </span>Measuring Success</a>
+                </li>
+            </ul>
+        </li>
+        
+</section>
+<div class="note">
+      NOTE: The specific word to use for the title role is not asserted in this proposal. For the purpose of this
+      document, it will be referred to as the Test Coordinator. However, the actual name to use is open for nomination
+      and discussion with some suggestions <a href="#role-name">below</a>
+  </div>
+<section id="introduction">
+    
+    <h2><span class="secno">1. </span>Introduction</h2>
+    <p>As the Open Web Platform grows, so does its complexity and the needs of broad community it serves. As such, the
+       W3C and all of its subgroups must continually adapt and align common practices to best enable the community to
+       deliver interoperable technology to the Web.</p>
+    
+    <p>The specification editor role is widely and formally recognized within the W3C as fundamental in creating and
+       maintaining standards yet there is no corresponding role defined to ensure creation and maintenance of tests.
+       Furthermore, in the current state of many emerging specs it is strongly apparent that more tests are needed for
+       them. Therefore, a logical extension of roles and a solution to address the test deficits is to define a new role
+       for test coordination. This is a proposal to introduce the Test Coordinator, a person who is publicly identified
+       at the spec level to oversee test creation, review, delivery, and maintenance throughout the life cycle of a
+       spec.</p>     
+    
+    <p>The following document outlines a detailed proposal for the definition, responsibilities and expectations for
+       this role as well as suggested steps for implementation within the W3C.</p>
+  
+</section>
+<section id="challenges">
+    
+    <h2><span class="secno">2. </span>Challenges</h2>
+    <p>While some working groups and specs face more of these than others, the common challenges in test coordination
+       are: </p>
+        <ol>
+            <li>Many tests are needed, but it's unclear where to start or what needs to be done</li>
+            <li>It's not easy to see what tests already exist and what coverage they provide</li>
+            <li>The quality of tests varies</li>
+            <li>There is a lack of reviewers, so getting tests approved can take a very long time</li>
+            <li>Tests are not certified and delivered at regular intervals</li>
+        </ol>
+</section>
+<section id="current-models">
+    
+    <h2><span class="secno">3. </span>Current Models</h2>
+    <p>Some W3C working groups have already taken a similar approach for managing testing. In fact, this proposal is
+       inspired by these working groups and aims to further articulate and standardize this role. The intention is t
+       have a common set of practices across working groups so that the Open Web Platform test suites
+       are created and delivered to implementors in a timely and cohesive way.</p>
+    
+    <p>Here are two examples of test coordination currently in practice:
+    <h3><span class="secno">3.1 </span>WebApps Working Group</h3>
+    <p>The WebApps Working Group has defined roles to manage test ownership and process for their group of specs. The
+       roles (as defined <a href="http://www.w3.org/2008/webapps/wiki/Approval">here</a>) are:
+       <ul>
+           <li><b>Test Facilitator</b> - the person(s) responsible for maintaining a specification's test suite,
+                including: updating test cases, maintaining the test suite's status, etc. Normally, this role is 
+                assumed to the specification's Editor(s). A Test Facilitator will be designated as the Default Assignee
+                for the test suite's bug component in WebApp's Bugzilla database. Test Facilitators are expected to 
+                work with Contributors e.g. to resolve quality issues, to eliminate redundant/overlapping asserts, etc.
+           </li>
+           <li><b>Testing Coordinator</b> - the person responsible for coordinating all of WebApps' testing efforts,
+                including: assuring only approved tests are put in .../approved/ directories, making sure the test
+                suites' statuses are current, etc. By default, this role is taken by a WG Chair, a WebApps Team Contact
+                or a member of the WG. (In practice, this role may be shared by more than one person.)
+            </li>
+        </ul>
+    <h3><span class="secno">3.2 </span>HTML5 Working Group</h3>
+    <p>The HTML5 Working group has formed a 
+        <a href="http://www.w3.org/html/wg/wiki/TaskForces#Testing_Task_Force">Testing Task Force</a>,
+         which meets bi-weekly and focuses on the development of tests.
+</section>
+<section id="proposal">
+    
+    <h2><span class="secno">4. </span>Proposal</h2>
+    
+    <p>This proposal builds upon the current models in practice and aims to elevate and formalize the test
+       administration role across all W3C specifications and working groups. To clarify the role and to address the
+       challenges listed <a href="#current-challenges">above</a>, the various aspects of this role are defined in 
+       detail below.
+    
+    <section id="roledefinition">
+
+        <h3><span class="secno">4.1 </span>Role Definition</h3>
+        
+        <p>The main intention for defining this entity is to distribute, delegate, and share responsibility among the
+           people that have the expertise and the passionate desire for a high quality Open Web Platform.<p>
+             
+        <p>At a minimum, this role shall be generally defined as a publicly identifiable person who oversees, manages,
+           and coordinates all testing efforts for an individual W3C specification. Within each working group, there
+           shall be flexibility on the further detailing the definition of this role.  For example, as the
+           specifications vary dramatically in size, impact and complexity, each spec needn't have just a single Test
+           Coordinator; it may have as many Test Coordinators as desired by the working groups managing it.</p>
+        
+        <p>The duties assumed in this role may include any or all of the following:</p>
+        <ul>
+            <li>Engagement with the spec editors, the W3C, other Test Coordinators, and the community</li>
+            <li>Subscriptions and participation on all relevant testing and spec W3C mailing lists</li>
+            <li>Test coverage assessment for the spec</li>
+            <li>Creation and maintenance of a public test outline defining all tests that are needed for the spec</li>
+            <li>Monitoring backlog of tests awaiting review to ensure prompt approval</li>
+            <li>Coordination of periodic delivery of certified test suite snapshots to implementors</li>
+            <li>Participation in crowd-sourcing efforts, such as 
+                <a href="http://testthewebforward.org/">Test The Web Forward</a>
+            </li>
+            <li>Contributing to documentation that enables newcomers to write high quality tests</li>
+            <li>Recruitment of new test writers and test reviewers</li>
+            <li>Continuous assessment of the testability of the spec</li>
+        </ul>
+        
+        
+    </section>
+    <section id="scope">
+    
+        <h3><span class="secno">4.2 </span>Role Scope</h3>
+        <p>The scope of this role is coordination of testing activity on the spec (or spec sections) to which this
+            person is appointed. Testing activity may include (but is not limited to):
+            <ul>
+                <li>Test planning</li>
+                <li>Authoring</li>
+                <li>Reviewing</li>
+                <li>Spec or feature-specific test documentation</li>
+                <li>Test templates or sample tests</li>
+                <li>Test coverage</li>
+                <li>Feature-specific infrastructure</li>
+            </ul>
+    </section>
+    <section id="limitations">
+
+        <h3><span class="secno">4.3 </span>Limitations</h3>
+        <p>While the person in this role may contribute directly to any of the testing activities mentioned above, it
+           shall be clear that he or she is not solely responsible for them. In fact, direct contributions as a test
+           author or reviewer (for example) need not be a requirement for this role. It may be that is purely to manage
+           and coordinate others who are contributing directly to the test suites. 
+        </p>
+        <p>Also, this role shall not be considered as an editor of the specification. With the exception of the initial
+        <a href="#implementation">implementation</a> period, the Test Coordinator's responsibilities are separate than
+         those of the editors.</p>
+    
+    </section>
+    <section id="relationships">
+    
+        <h3><span class="secno">4.4 </span>Role Relationships</h3>
+        
+        <p>As testing is an integral part of the Open Web Platform that impacts and aids many people, the Test
+           Coordinator role shall be one that has relationships with all of the various stakeholders.</p>
+
+        <section id="wg-members">
+    
+            <h4><span class="secno">4.4.1 </span>W3C</h4>
+            <p>Each spec Test Coordinator shall have ongoing communication and participation with the W3C as efforts 
+                are 
+                <a href="http://tobie.github.com/w3c-testing-plan/unofficial-w3c-testing-plan-20120116.html">
+                    underway
+                </a>  at the W3C level to build and improve the test suites, framework, and infrastructure.  Therefore,
+                 it is imperative that the Test Coordinators represent their specs and working groups as a constituency
+                 as decisions are made along the way.</p>
+    
+        </section>
+        <section id="spec-editors">
+    
+            <h4><span class="secno">4.4.2 </span>Spec Editors</h4>
+            <p>Although the Test Coordinator shall be seen as a separate entity than the spec editor, the two roles
+               shall have a symbiotic relationship. Just as the role of the Test Coordinator is to act as a catalyst 
+               for bigger and better test suites, it shall also help improve the quality, clarity, and testability of
+               the specifications. The spec Test Coordinator may look to the editors when testing efforts are 
+               challenged or blocked due to issues with how the spec is authored. The spec editors may seek the
+               assistance of the Test Coordinator when additional coverage is needed to advance a spec or resolve 
+               an issue.</p>
+    
+        </section>
+        <section id="wg-members">
+    
+            <h4><span class="secno">4.4.3 </span>Working Group Members</h4>
+            <p>Although not required, it is highly desirable that the test owner is an official member of the working
+               group to which his or her appointed spec belongs. Similar to the relationship with the spec editors
+               directly, the Test Coordinator may seek support from the broader working group when coordinating testing
+               activities. Conversely, all testing status and progress shall be shared with the entire working group as
+               advancements are made.</p>
+    
+        </section>
+        <section id="community">
+    
+            <h4><span class="secno">4.4.4 </span>Open Web Platform Community</h4>
+            <p>Last, but perhaps most importantly, the Test Coordinator shall interface with the community to make
+               contributing tests accessible and productive. Community participation in the advancement the Open Web
+               Platform is vital to its success and quality. The Test Coordinators should recognize and utilize any of
+               the myriad of ways through which to engage with the public.</p> 
+    
+        </section>
+    
+    </section>
+    <section id="role-name">
+        
+         <h3><span class="secno">4.5 </span>Role Name</h3>
+         
+         <p>There may be controversy with whatever particular word is used in the title designating the Test
+            Coordinator. This may be in part to the fact that individual words without contextual definitions may be
+            misleading. This is yet another motivation for this thorough proposal and definition of role. Whatever word
+            is chosen shall take on the meaning laid out in this document, which should assuage concerns or distaste 
+            for otherwise misleading terms.</p>
+         
+         <p>That said, the official proposal for the name is to make the selection entirely democratic. Nominations 
+            and preferences of all interested stakeholders shall be considered and the majority will prevail.</p>
+         
+         <p>Some suggestions (with supporting definitions):</p>
+         <ul>
+             <li>Test Coordinator <i>(as in this document and a role currently defined by the WebApps WG)</i>
+                 <blockquote>
+                     <code>Definition: (v.) To harmonize in a common action or effort.</code>
+                 </blockquote>
+             </li>
+             <li>Test Facilitator <i>(also currently defined by the WebApps WG)</i>
+                 <blockquote>
+                    <code>(v.) to make easier; assist the progress of</code>
+                 </blockquote>
+             </li>
+             <li>Test Suite Owner
+                 <blockquote>
+                     <code>Definition: (n.) a person who owns; possessor; proprietor.</code>
+                  </blockquote>
+             </li>
+             <li>Test Adminstrator
+                 <blockquote>
+                       <code>
+                           Definition: (n.) A person who administers the affairs of an organization, 
+                           official body, etc.
+                        </code>
+                 </blockquote>
+             </li>
+             <li>Test Principal
+                 <blockquote>
+                      <code>Definition: (n.) The person having prime responsibility for an obligation as distinguished
+                           from one who acts as surety or as an endorser. (as it pertains to Law)</code>
+                   </blockquote>
+             </li>
+             <li>Test Steward
+                 <blockquote>
+                       <code>Definition: (n.) one who actively directs affairs</code>
+                    </blockquote>
+             </li>
+             <li>Test Ambassador
+                 <blockquote>
+                      <code>Definition: (n.) An authorized messenger or representative.</code>
+                   </blockquote>
+             </li>
+             <li>Test Editor
+                 <blockquote>
+                        <code>Definition: (n.) a person having managerial and sometimes policy-making responsibility 
+                              for the editorial part of a publishing firm or of a newspaper, magazine, or other
+                              publication.</code>
+                  </blockquote>
+             </li>
+         </ul>
+   
+    </section>
+    <section id="implementation">
+
+        <h3><span class="secno">4.6 </span>Implementation</h3>
+
+        <p>This section of the document describes the proposal's implementation. If adopted, support and 
+           acknowledgement from some key stakeholders will be very effective in rolling out the various pieces of 
+           this new process.</p>
+        
+        <section id="w3c-acknowledgement">
+    
+            <h4><span class="secno">4.6.1 </span>W3C Acknowledgement</h4>
+            <p>First and foremost, and since this is aimed to have some degree of consistency across the W3C, formal
+               acknowledgement and acceptance from the W3C shall be the basis for the rest.  The degree to which the 
+               W3C can facilitate or enforce its adoption should be discussed further and remain consistent with other
+               W3C-wide processes.</p>
+    
+        </section>
+        
+        <section id="wg-acknowledgement">
+    
+            <h4><span class="secno">4.6.2 </span>WG Acknowledgement</h4>
+            <p>At the next level, and in conjunction with the W3C, the working groups shall acknowledge this new role
+               and agree to adopt at least a minimum set of its pieces. Where parts of this is already in place, full
+               adoption may simply be designating Test Coordinators for all the specs that currently have none. The
+               WGs shall also agree to adopt the same minimum set of pieces with the  possibility of further defining 
+               an approach more tailored to their spec organization.  For example, the CSS Working Group manages a 
+               large set of specs that are interrelated with one master spec representing the entire body of CSS 2.1 
+               and many smaller specs for the respective CSS 3 features. It may be sensible to determine the division 
+               of ownership based on logical groupings of closely related CSS specs.</p>
+    
+        </section>
+        
+        <section id="spec-updates">
+    
+            <h4><span class="secno">4.6.3 </span>Spec Updates</h4>
+            <p>A key part of this proposal is to have the Test Coordinator be publicly identifiable. Thus, the initial
+               step in implementing the new role should include a modification to W3C spec template and header to list
+               the Test Coordinator(s) immediately beneath the spec Editors.</p>
+    
+        </section>
+        
+        <section id="selection">
+    
+            <h4><span class="secno">4.6.4 </span>Selection and Appointment</h4>
+            <p>The Test Coordinators for each spec may be selected and appointed by the working groups and/or the spec
+               editors. In the initial implementation phase, each spec shall have a Test Coordinator identified and may
+               start as the editors themselves until the role is fill. Later, a more refined process for nominating and
+               approving Test Coordinators may be further defined by the working groups.</p>
+    
+        </section>
+        
+        <section id="common-materials">
+    
+            <h4><span class="secno">4.6.5 </span>Common Tools and Materials</h4>
+            <p>A set of common tools and materials to be used by Test Coordinators across all W3C specs may be created
+               and shared to initiate the consistency of the role. Some of these things may be:</p>
+            <ul>
+                <li>A template for test outlines to publish along with the spec to define what tests are needed</li>
+                <li>A test status report template</li>
+                <li>A test coverage report template</li>
+            </ul>
+    
+        </section>
+
+    </section>
+    <section id="measuring-success">
+
+        <h3><span class="secno">4.7 </span>Measuring Success</h3>
+
+        <p>As the initial steps to introduce this role are completed, the means to measure the success of the rollout
+           may be:</p>
+        <ul>
+            <li>Each W3C spec has a Test Coordinator identified</li>
+            <li>Each W3C spec has been modified to include the Test Coordinator's name</li>
+            <li>The Test Coordinators have agreed to collect a minimum amount of information on the status of
+                testing for their specs</li>
+            <li>A centralized location has been designated for containing the Test Coordinators common information</li>
+        </ul>
+
+    </section>
+</section>
+</body>
+</html>
